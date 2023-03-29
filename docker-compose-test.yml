@@ -1,0 +1,79 @@
+version: '3.7'
+
+networks:
+  idpnetwork:
+    driver: ${NETWORKS_DRIVER:-bridge}
+
+  default:
+    external:
+      name: br0
+
+volumes:
+  composer: {}
+  redis_data: { }
+  db-data: {}
+
+services:
+
+    nginx:
+      image: nginx:alpine
+      depends_on:
+        - php
+      volumes:
+        - ./app:/var/www
+        - ./var/log/nginx:/var/log/nginx:delegated
+        - ./docker/nginx/conf.d:/etc/nginx/conf.d
+        - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      ports:
+        - "127.0.0.1:53280:80"
+      working_dir: /var/www
+      networks:
+        - idpnetwork
+
+    php:
+      build:
+        args:
+          PUID: "${PUID:-1000}"
+        context: ./docker/php
+      volumes:
+        - ./app:/var/www:rw
+        - composer:/home/www-data/.composer:rw
+      environment:
+        - PHP_DATE_TIMEZONE=${PHP_DATE_TIMEZONE:-Europe/Moscow}
+        - PHP_IDE_CONFIG=serverName=backend
+        - PUID=${PUID:-1000}
+      user: www-data
+      depends_on:
+        - database
+      networks:
+        - idpnetwork
+
+    redis:
+      build:
+        context: ./docker/redis
+      restart: unless-stopped
+      volumes:
+        - redis_data:/data:rw
+      ports:
+        - "127.0.0.1:6399:6379"
+      networks:
+        - idpnetwork
+
+    database:
+      image: postgres:14
+      environment:
+        - POSTGRES_DB=idp
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=postgres
+      volumes:
+        - db-data:/var/lib/postgresql/data:rw
+      ports:
+        - "127.0.0.1:53337:5432"
+      healthcheck:
+        test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+        interval: 5s
+        timeout: 5s
+        retries: 5
+      networks:
+        - idpnetwork
+

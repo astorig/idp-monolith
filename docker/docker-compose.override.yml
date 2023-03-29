@@ -1,0 +1,14 @@
+version: '3.7'
+
+services:
+
+  php:
+    build:
+      args:
+        INSTALL_XDEBUG: "true"
+        DEVELOP: "true"
+    volumes:
+      - ./docker/php/conf.d/99-xdebug.ini:/usr/local/etc/php/conf.d/99-xdebug.ini
+      - ./docker/php/supervisor.test/test.conf:/etc/supervisor/conf.d/test.conf
+    extra_hosts:
+      - "host.docker.internal:192.168.1.150"
