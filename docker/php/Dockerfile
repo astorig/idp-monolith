@@ -65,15 +65,9 @@ RUN docker-php-ext-install mbstring
 RUN pecl install memcached; \
   docker-php-ext-enable memcached
 
-# BcMath
-RUN docker-php-ext-install bcmath
-
 # Sockets
 #RUN docker-php-ext-install sockets
 RUN docker-php-source extract ; curl -fsSL https://raw.githubusercontent.com/php/php-src/6a6c8a60965c6fc3f145870a49b13b719ebd4a72/ext/sockets/config.m4 -o /usr/src/php/ext/sockets/config.m4 ; docker-php-ext-install sockets
-
-# FileInfo
-RUN docker-php-ext-install fileinfo
 
 # Ext Intl
 RUN docker-php-ext-install intl
