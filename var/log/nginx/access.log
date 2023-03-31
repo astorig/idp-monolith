@@ -1,5 +1,0 @@
-172.22.0.1 - - [29/Mar/2023:19:54:08 +0000] "GET / HTTP/1.1" 404 47 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0" "-"
-172.22.0.1 - - [29/Mar/2023:19:54:08 +0000] "GET /favicon.ico HTTP/1.1" 404 47 "http://127.0.0.1:53280/" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0" "-"
-172.22.0.1 - - [29/Mar/2023:19:54:28 +0000] "GET / HTTP/1.1" 404 47 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0" "-"
-172.22.0.1 - - [29/Mar/2023:19:54:28 +0000] "GET /favicon.ico HTTP/1.1" 404 47 "http://localhost:53280/" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0" "-"
-172.22.0.1 - - [29/Mar/2023:20:01:16 +0000] "GET / HTTP/1.1" 200 5720 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0" "-"

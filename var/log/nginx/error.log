@@ -1,4 +1,0 @@
-2023/03/29 19:54:08 [crit] 31#31: *1 realpath() "/var/www/public" failed (2: No such file or directory), client: 172.22.0.1, server: , request: "GET / HTTP/1.1", host: "127.0.0.1:53280"
-2023/03/29 19:54:08 [crit] 31#31: *1 realpath() "/var/www/public" failed (2: No such file or directory), client: 172.22.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "127.0.0.1:53280", referrer: "http://127.0.0.1:53280/"
-2023/03/29 19:54:28 [crit] 31#31: *4 realpath() "/var/www/public" failed (2: No such file or directory), client: 172.22.0.1, server: , request: "GET / HTTP/1.1", host: "localhost:53280"
-2023/03/29 19:54:28 [crit] 31#31: *4 realpath() "/var/www/public" failed (2: No such file or directory), client: 172.22.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost:53280", referrer: "http://localhost:53280/"

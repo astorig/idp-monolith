@@ -27,6 +27,7 @@ jobs:
             cd $(echo $DEPLOYMENT_PATH)
             git pull
             cp .env.example .env
+            sudo chown -R www-data:www-data $DEPLOYMENT_PATH
             # build containers
             make build
             # start containers
