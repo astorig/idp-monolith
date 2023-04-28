@@ -44,8 +44,6 @@ help:
 
 down:
 	cd $(APP_DIR) && docker-compose down -v --remove-orphans
-	cd $(APP_DIR) && docker container prune -f
-	cd $(APP_DIR) && docker image prune -f
 
 up:
 	docker rm -f $$(docker ps -a | grep idp | awk '{print $$1}') || echo
@@ -82,3 +80,9 @@ tests_run:
 	cp .env.test.example .env.test
 	cd $(APP_DIR) && $(DC) docker-compose exec -T php /bin/bash -c "COMPOSER_MEMORY_LIMIT=-1 composer install --prefer-dist --no-ansi --no-scripts --no-interaction --no-progress"
 	#cd $(APP_DIR) && $(DC) docker-compose exec -T php php vendor/bin/phpunit
+
+exec-bash:
+	docker-compose exec -T php bash -c "$(cmd)"
+
+migrate:
+	@make exec-bash cmd="php artisan migrate --force"

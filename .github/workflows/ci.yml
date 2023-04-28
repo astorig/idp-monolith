@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 env:
-  DEPLOYMENT_PATH: "/opt/idp-monolith"
+  DEPLOYMENT_PATH: "/var/www/idp-monolith"
 
 jobs:
   deploy:
